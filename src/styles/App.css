@@ -4,11 +4,19 @@
   padding: 2rem;
   text-align: center;
 }
-
+.HomeMainDiv{
+  jus
+}
 .card {
   padding: 2em;
+  border
 }
 
 .read-the-docs {
   color: #888;
+}
+
+.img {
+  width: 100%;
+  hight: 50%;
 }
