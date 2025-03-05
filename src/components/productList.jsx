@@ -1,36 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { getData } from "../api/api";
+// import React, { useState, useEffect } from "react";
+// import { getData } from "../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToCart } from "../features/cartSlice";
+import { fetchData } from "../features/cartSlice";
+import { useEffect } from "react";
 
 const ProductList = () => {
-  const [product, setProducts] = useState([]);
+  //   const [product, setProducts] = useState([]);
 
   const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.cart);
+
+  //   useEffect(() => {
+  //     const fetchDataFromApi = async () => {
+  //       try {
+  //         const data = await getData();
+  //         // console.log("data fetched", data.products);
+  //         setProducts(data);
+  //       } catch (error) {
+  //         console.error("Error fetching products:", error);
+  //       }
+  //     };
+
+  //     fetchDataFromApi();
+  //   }, []); // Empty dependency array ensures it runs only on mount
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
-      try {
-        const data = await getData();
-        // console.log("data fetched", data.products);
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchDataFromApi();
-  }, []); // Empty dependency array ensures it runs only on mount
+    dispatch(fetchData());
+  }, [dispatch]);
 
   const handleDispatchADD = (product) => {
     console.log("add clicked", product);
     dispatch(addProductToCart(product));
   };
+  if (!data || data.length === 0) {
+    return <p>No products available.</p>;
+  }
+
   return (
-    <div>
+    <div className="HomeMainDiv">
       <h1>List of Products</h1>
-      {product.map((product) => (
-        <div key={product.id}>
+      {data.map((product) => (
+        <div key={product.id} className="card">
           <img src={product.thumbnail} alt={product.title} />
           <h3 className="product-title">{product.title}</h3>
           <p className="product-price">Price: ₹{product.price}</p>
