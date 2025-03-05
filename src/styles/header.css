@@ -1,0 +1,99 @@
+/* Navigation Bar Container */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    rgb(81, 125, 246),
+    rgb(49, 21, 141)
+  ); /* Blue Gradient */
+  padding: 15px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: sticky;
+  top: 0;
+  width: auto%;
+  z-index: 1000;
+}
+
+/* Logo Styling */
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-logo:hover {
+  color: #cce5ff;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Active Link Styling */
+.nav-links a.active {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* Cart Link */
+.cart-link {
+  position: relative;
+
+  padding-right: -10px;
+}
+
+/* Cart Badge (Only Appears When Items Are Present) */
+.cart-badge {
+  background-color: #dc3545;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 7px 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  min-width: 16px;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+}

@@ -20,7 +20,7 @@ const cartSlice = createSlice({
   reducers: {
     addProductToCart: (state, action) => {
       const product = action.payload;
-      console.log(product);
+      console.log("product is added ", product);
       const existingProduct = state.cartProduct.find(
         (item) => item.id === product.id
       );
@@ -33,16 +33,39 @@ const cartSlice = createSlice({
       state.totalPrice += product.price;
     },
     removeProductFromCart: (state, action) => {
-      const id = action.payload;
-      const existingItem = state.cartProduct.find((item) => item.id === id);
+      const productId = action.payload;
+      console.log("product is removed ", productId);
+      console.log("Cart Before Removing: ", state.cartProduct);
+      console.log("Trying to remove ID: ", productId);
+
+      const existingItem = state.cartProduct.find(
+        (item) => item.id === productId
+      );
+      console.log("product in existingItem ", existingItem);
 
       if (existingItem) {
-        state.totalQuantity -= existingItem.quantity;
-        state.totalPrice -= existingItem.price * existingItem.quantity;
-        state.cartProduct = state.cartProduct.filter((item) => item.id !== id);
+        if (existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+          state.totalQuantity -= 1;
+          state.totalPrice -= existingItem.price;
+        } else {
+          state.totalQuantity -= existingItem.quantity;
+          state.totalPrice -= existingItem.price * existingItem.quantity;
+
+          state.cartProduct = state.cartProduct.filter(
+            (item) => item.id !== productId
+          );
+        }
+
+        console.log("Cart After Removing: ", state.cartProduct);
       }
     },
-    removeAllProducts: (state, action) => {},
+    removeAllProducts: (state) => {
+      state.cartProduct = [];
+      state.totalQuantity = 0;
+      state.totalPrice = 0;
+    },
+
     addQuantity: (state, action) => {},
     removeQuantity: (state, action) => {},
     clearQuantity: (state, action) => {},

@@ -38,18 +38,27 @@ const ProductList = () => {
   }
 
   return (
-    <div className="HomeMainDiv">
-      <h1>List of Products</h1>
-      {data.map((product) => (
-        <div key={product.id} className="card">
-          <img src={product.thumbnail} alt={product.title} />
-          <h3 className="product-title">{product.title}</h3>
-          <p className="product-price">Price: ₹{product.price}</p>
-          <button onClick={() => handleDispatchADD(product)}>
-            Add to cart
-          </button>
-        </div>
-      ))}
+    <div className="product-list-container">
+      <h1 className="product-list-header">List of Products</h1>
+      <div className="product-grid">
+        {data.map((product) => (
+          <div key={product.id} className="product-card">
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              className="product-image"
+            />
+            <h3 className="product-title">{product.title}</h3>
+            <p className="product-price">Price: ₹{product.price}</p>
+            <button
+              onClick={() => handleDispatchADD(product)}
+              className="add-to-cart-button"
+            >
+              Add to cart
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

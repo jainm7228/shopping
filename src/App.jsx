@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Header />
-      <h1>SHOPPERS STOP</h1>
+
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/products" element={<ProductList />} />
