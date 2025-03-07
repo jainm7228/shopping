@@ -58,6 +58,10 @@ const cartSlice = createSlice({
         }
 
         console.log("Cart After Removing: ", state.cartProduct);
+      } else {
+        state.cartProduct = [];
+        state.totalQuantity = 0;
+        state.totalPrice = 0;
       }
     },
     removeAllProducts: (state) => {
