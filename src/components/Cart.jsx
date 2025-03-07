@@ -27,12 +27,14 @@ function Cart() {
               <h3>{item.name}</h3>
               <p>Price: ${item.price}</p>
               <p>Quantity: {item.quantity}</p>
+
               <button
                 onClick={() => handleDispatchRemove(item.id)}
                 className="remove-button"
               >
                 remove
               </button>
+              <input type="number" value={totalQuantity} />
             </div>
           ))
         ) : (
